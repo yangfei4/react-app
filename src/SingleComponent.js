@@ -1,6 +1,6 @@
 import React from "react";
 import p1 from './pictures/pic-3.jpeg';
-
+ 
 const SingleComponent = () => {
     return (
         <div className='comment'>
