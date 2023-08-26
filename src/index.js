@@ -1,11 +1,11 @@
 import React from 'react';
 import {createRoot} from 'react-dom/client';
-import SingleComponent from './SingleComponent';
+import SingleComment from './SingleComment';
 
 const App = () => {
     return(
         <div className='ui comments'>
-            <SingleComponent/>
+            <SingleComment/>
         </div>
     )
 }
