@@ -3,3 +3,6 @@ This repo is to record my practice for MERN react-app projects, aiming to improv
 
 ### Comment App
 See [here](https://github.com/yangfei4/react-app/tree/main/comment-app)
+
+### Hemisphere App
+See [here](https://github.com/yangfei4/react-app/tree/main/hemisphere)
