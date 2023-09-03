@@ -16,7 +16,7 @@ function App() {
           <Route path='/about' Component={About} />
           <Route path='/contact' Component={Contact} />
           {/* <Route path='/Card/:user' Component={Card} /> */}
-          <Route path='/card/:user' element = {<Card/>} />
+          <Route path='/:user' element = {<Card/>} />
         </Routes>
       </div>
     </BrowserRouter>
