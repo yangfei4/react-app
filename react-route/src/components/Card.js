@@ -4,7 +4,7 @@ import {useParams} from 'react-router';
 const Card = () => {
     const params = useParams()
     console.log(params)
-
+ 
     return(
         <div 
         className='ui raised very padded text container segment'
