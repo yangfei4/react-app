@@ -1,28 +1,45 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import { Card, Form, Input, Typography, Button } from 'antd';
 import { CanceledError } from 'axios';
 import FileBase64 from "react-file-base64";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { createStory } from '../../actions/stories';
+import { createStory, updateStory } from '../../actions/stories';
 import style from "./style";
 
 const { Title } = Typography;
 
-function StoryForm() {
+function StoryForm({selectedId, setSelectedId}) {
   const [form] = Form.useForm();
   const dispatch = useDispatch();
+  const story = useSelector((state) => selectedId ? state.stories.find(story => story._id===selectedId) : null);
 
   const onSubmit = (formValues) => {
+    selectedId ? 
+    dispatch(updateStory(selectedId, formValues)) :
     dispatch(createStory(formValues));
+
+    reset();
   };
+
+  useEffect(() => {
+    if(story){
+      form.setFieldsValue(story);
+    }
+  }, [story, form]);
+
+  const reset = () => {
+    form.resetFields();
+    setSelectedId(null);
+  }
 
   return (
     <Card 
       style={style.formCard}
       title={
         <Title level={4} style={style.formTitle}>
+          {selectedId? "Editing" : "Share"} a story
         </Title>
       }
     >
@@ -67,6 +84,23 @@ function StoryForm() {
               Share
             </Button>
         </Form.Item>
+        {!selectedId ? null :
+                <Form.Item wrapperCol={{
+                  span: 16,
+                  offset: 6
+                }}
+                >
+                    <Button
+                      type="primary"
+                      block
+                      htmlType='button'
+                      onClick={reset}
+                      danger
+                    >
+                     Cancel
+                    </Button>
+                </Form.Item>
+        }
       </Form>
     </Card>
   )

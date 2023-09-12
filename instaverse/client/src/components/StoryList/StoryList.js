@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 
 import Story from "../Story";
 
-function StoryList() {
+function StoryList({ setSelectedId }) {
   const stories = useSelector((state) => state.stories);
 
   console.log("stories in StoryList", stories);
@@ -18,7 +18,7 @@ function StoryList() {
       {stories.map((story) => {
         return (
           <Col lg={24} xl={12} xxl={8}>
-            <Story story={story}/>
+            <Story story={story} setSelectedId={setSelectedId}/>
           </Col>
         )
       })}
