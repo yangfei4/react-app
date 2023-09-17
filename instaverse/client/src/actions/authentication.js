@@ -6,7 +6,10 @@ import {
 export const login = (formValues, navigate) => async dispatch => {
     try {
         const { data } = await api.login(formValues);
-        dispatch( {type: AUTHENTICATION, payload: data} );
+        dispatch({
+            type: AUTHENTICATION, 
+            data: data
+        });
         navigate("/");
     } catch (error) {
         console.log(error.message);
@@ -16,7 +19,10 @@ export const login = (formValues, navigate) => async dispatch => {
 export const signup = (formValues, navigate) => async dispatch => {
     try {
         const { data } = await api.signup(formValues);
-        dispatch( {type: AUTHENTICATION, payload: formValues} );
+        dispatch({
+            type: AUTHENTICATION, 
+            data: data
+        });
         navigate("/");
     } catch (error) {
         console.log(error.message);
