@@ -12,39 +12,45 @@ const { Link, Paragraph, Text } = Typography;
 
 function Story({ story, setSelectedId }) {
   const [expand, setExpand] = useState(true);
+  const user = JSON.parse(localStorage.getItem("profile"));
 
   const dispatch = useDispatch();
+
+  const cardActions = [
+    <div style={style.actions}>
+      <Tooltip
+        placement='top'
+        title='Like'
+        color='magenta'
+        onClick={() => {dispatch(likeStory(story._id))}}
+      >
+        <HeartTwoTone twoToneColor="magenta" />
+        &nbsp; {story.likes.length} &nbsp;
+      </Tooltip>
+    </div>,
+    <Tooltip
+      placement='top'
+      title='Edit'
+    >
+      <EditOutlined onClick={() => { setSelectedId(story._id) }}/>
+    </Tooltip>,
+    <Tooltip
+      placement='top'
+      title='Delete'
+      color='red'
+    >
+      <DeleteTwoTone twoToneColor="red" onClick={() => {dispatch(deleteStory(story._id))}}/>
+    </Tooltip>
+  ]
 
   return (
     <Card 
       style={style.card}
       cover={<Image src={story.image}/>}
-      actions={[
-        <div style={style.actions}>
-          <Tooltip
-            placement='top'
-            title='Like'
-            color='magenta'
-            onClick={() => {dispatch(likeStory(story._id))}}
-          >
-            <HeartTwoTone twoToneColor="magenta" />
-            &nbsp; {story.likes} &nbsp;
-          </Tooltip>
-        </div>,
-        <Tooltip
-          placement='top'
-          title='Edit'
-        >
-          <EditOutlined onClick={() => { setSelectedId(story._id) }}/>
-        </Tooltip>,
-        <Tooltip
-          placement='top'
-          title='Delete'
-          color='red'
-        >
-          <DeleteTwoTone twoToneColor="red" onClick={() => {dispatch(deleteStory(story._id))}}/>
-        </Tooltip>
-      ]}
+      actions={user?.result?._id === story?.userId ? 
+        cardActions :
+        (user?.result ? cardActions.slice(0,1) : null)
+      }
     >
       <Meta title={story.username}/>
       <Paragraph
