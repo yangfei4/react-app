@@ -3,16 +3,24 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import mongoose from 'mongoose';
 import storyRoutes from './routes/stories.js';
+import userRoutes from './routes/user.js';
+import dotenv from "dotenv";
 
 const app = express();
+dotenv.config();
 
 app.use(bodyParser.json({ limit: "32mb", extended: true })); // 
 app.use(bodyParser.urlencoded({ limit: "32mb", extended: true })); //req.body
 app.use(cors());
 // any route under http://localhost:5001/stories will invoke response in storyRoutes
 app.use("/stories", storyRoutes); // middleware for "/stories" -> added prefix route
+app.use("/user", userRoutes); // middleware for "/user" -> added prefix route
 
-const MONGO_URI = "mongodb+srv://yangfei:xiaobude321@cluster0.e7sthln.mongodb.net/?retryWrites=true&w=majority"
+app.use('/', (req, res) => {
+    res.send("Welcome to Instaverse API");
+});
+
+const MONGO_URI = process.env.MONGO_URI
 const PORT = process.env.PORT || 5001;
 
 const connectDB = async () => {
