@@ -95,7 +95,7 @@ const AuthForm = () => {
             </Form.Item>
           )}
           <Form.Item>
-            <Button htmlType='button' typeof='primary'>
+            <Button htmlType='submit' typeof='primary' >
               {isLogin ? "Log In" : "Join"}
             </Button>
             <span style={{ margin: "0 10px 0px 15px" }}>Or</span>
