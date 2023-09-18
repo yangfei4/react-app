@@ -16,7 +16,7 @@ app.use(cors());
 app.use("/stories", storyRoutes); // middleware for "/stories" -> added prefix route
 app.use("/user", userRoutes); // middleware for "/user" -> added prefix route
 
-app.use('/', (req, res) => {
+app.get('/', (req, res) => {
     res.send("Welcome to Instaverse API");
 });
 
