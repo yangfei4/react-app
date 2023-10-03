@@ -10,7 +10,7 @@ class SearchInput extends React.Component {
     }
     
     // second way to solve issue with 'undefined this'
-    // onFormSubmit = (event) => {
+    // onFormSubmit = (event) => { // arrow function would automatically bind 'this'
     onFormSubmit(event) {
         event.preventDefault();
         this.props.onSearchSubmit(this.state.entry);
