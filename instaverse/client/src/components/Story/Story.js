@@ -69,7 +69,7 @@ function Story({ story, setSelectedId }) {
       >
         { story.caption }
       </Paragraph>
-      {expand ? 
+      {expand && story.tags ? 
         <Link href='#'>{story.tags.split(" ").map((tag) => `#${tag} `)}</Link>
         : null
       }
