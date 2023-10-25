@@ -19,7 +19,6 @@ app.use("/user", userRoutes); // middleware for "/user" -> added prefix route
 app.get('/', (req, res) => {
     res.send("Welcome to Instaverse API");
 });
-
 const MONGO_URI = process.env.MONGO_URI
 const PORT = process.env.PORT || 5001;
 

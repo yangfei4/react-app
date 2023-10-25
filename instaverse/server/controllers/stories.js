@@ -70,7 +70,7 @@ const likeStory = async (req, res) => {
     if(index === -1){ //the story is not liked by the user 
         story.likes.push(req.userId);
     } else{
-        story.likes = story.likes.filter(id => id !== String(req.userId));
+        story.likes.splice(index, 1);
     }
 
     const updatedStory = await Story.findByIdAndUpdate(_id, story, { new: true });
